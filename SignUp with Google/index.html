@@ -1,0 +1,256 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with Firebase</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js"></script>
+</head>
+
+<body>
+    <h1>Login with Firebase</h1>
+    <button id="googleSignInButton">Sign in with Google</button>
+    <button id="facebookSignInButton">Sign in with Facebook</button>
+    <button id="signOutButton" style="display: none;">Sign Out</button>
+    <div id="userProfile" style="display: none;">
+        <h2>User Profile</h2>
+        <p><strong>Name:</strong> <span id="userName"></span></p>
+        <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        <img id="userPhoto" src="" alt="Profile Picture">
+    </div>
+
+    <script>
+        // Initialize Firebase with your Firebase project configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCnLdqiLsVwcreTZ7eyUKPagtwZDSIbbqw",
+            authDomain: "login-form-607b5.firebaseapp.com",
+            databaseURL: "https://login-form-607b5-default-rtdb.firebaseio.com",
+            projectId: "login-form-607b5",
+            storageBucket: "login-form-607b5.appspot.com",
+            messagingSenderId: "117746395656",
+            appId: "1:117746395656:web:908ff053ca2ff88cf2bfbd"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        // Get references to HTML elements
+        const googleSignInButton = document.getElementById("googleSignInButton");
+        const facebookSignInButton = document.getElementById("facebookSignInButton");
+        const signOutButton = document.getElementById("signOutButton");
+        const userProfile = document.getElementById("userProfile");
+        const userNameSpan = document.getElementById("userName");
+        const userEmailSpan = document.getElementById("userEmail");
+        const userPhoto = document.getElementById("userPhoto");
+
+        // Sign in with Google
+        googleSignInButton.addEventListener('click', () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    displayUserData(user);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        });
+
+        // Sign in with Facebook
+        facebookSignInButton.addEventListener('click', () => {
+            const provider = new firebase.auth.FacebookAuthProvider();
+            firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    displayUserData(user);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        });
+
+        // Display user data and show sign-out button
+        function displayUserData(user) {
+            if (user) {
+                const userName = user.displayName;
+                const userEmail = user.email;
+                const userProfilePicture = user.photoURL;
+
+                userNameSpan.textContent = userName;
+                userEmailSpan.textContent = userEmail;
+                userPhoto.src = userProfilePicture;
+
+                userProfile.style.display = "block";
+                signOutButton.style.display = "block";
+                googleSignInButton.style.display = "none";
+                facebookSignInButton.style.display = "none";
+            }
+        }
+
+        // Sign out
+        signOutButton.addEventListener("click", () => {
+            firebase.auth().signOut()
+                .then(() => {
+                    userProfile.style.display = "none";
+                    signOutButton.style.display = "none";
+                    googleSignInButton.style.display = "block";
+                    facebookSignInButton.style.display = "block";
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        });
+    </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with Firebase</title>
+    <style>
+        .prof-img img {
+            border-radius: 50px;
+            position: absolute;
+            top: 100px;
+            left: 300px;
+        }
+    </style>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+</head>
+
+<body>
+    <h1>Login with Firebase</h1>
+    <button id="googleSignInButton">Sign in with Google</button>
+    <button id="facebookSignInButton">Sign in with Facebook</button>
+    <button id="signOutButton" style="display: none;">Sign Out</button>
+    <div id="userProfile" style="display: none;">
+        <h2>User Profile</h2>
+        <p><strong>Name:</strong> <span id="userName"></span></p>
+        <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        <div class="prof-img">
+            <img id="userPhoto" src="" alt="Profile Picture">
+        </div>
+    </div>
+
+    <script>
+        // Initialize Firebase with your Firebase project configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCnLdqiLsVwcreTZ7eyUKPagtwZDSIbbqw",
+            authDomain: "login-form-607b5.firebaseapp.com",
+            databaseURL: "https://login-form-607b5-default-rtdb.firebaseio.com",
+            projectId: "login-form-607b5",
+            storageBucket: "login-form-607b5.appspot.com",
+            messagingSenderId: "117746395656",
+            appId: "1:117746395656:web:908ff053ca2ff88cf2bfbd"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Get references to HTML elements
+        const googleSignInButton = document.getElementById("googleSignInButton");
+        const facebookSignInButton = document.getElementById("facebookSignInButton");
+        const signOutButton = document.getElementById("signOutButton");
+        const userProfile = document.getElementById("userProfile");
+        const userNameSpan = document.getElementById("userName");
+        const userEmailSpan = document.getElementById("userEmail");
+        const userPhoto = document.getElementById("userPhoto");
+
+        // Create a provider for Google and Facebook sign-in
+        const googleProvider = new firebase.auth.GoogleAuthProvider();
+        const facebookProvider = new firebase.auth.FacebookAuthProvider();
+
+       const app = firebase.auth()
+        // Sign in with Google
+        //     const auth = getAuth();
+        //     auth.onAuthStateChanged((user) => {
+            //         console.log(user);
+            //     });
+            
+            googleSignInButton.addEventListener('click', () => {
+                app.signInWithPopup(googleProvider)
+                .then((result) => {
+                    const user = result.user;
+                    displayUserData(user);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+                
+                });
+        // Sign in with Facebook
+        facebookSignInButton.addEventListener('click', () => {
+            app.signInWithPopup(facebookProvider)
+                .then((result) => {
+                    const user = result.user;
+                    displayUserData(user);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        });
+
+        // Display user data and show sign-out button
+        function displayUserData(user) {
+            if (user) {
+                // const userName = user.displayName;
+                // const userEmail = user.email;
+                // const userProfilePicture = user.photoURL;
+
+                userNameSpan.textContent = user.displayName;
+                userEmailSpan.textContent = user.email;
+                userPhoto.src = user.photoURL;
+
+                userProfile.style.display = "block";
+                signOutButton.style.display = "block";
+                googleSignInButton.style.display = "none";
+                facebookSignInButton.style.display = "none";
+            }
+        }
+
+        // Sign out
+        signOutButton.addEventListener("click", () => {
+            app.signOut()
+                .then(() => {
+                    userProfile.style.display = "none";
+                    signOutButton.style.display = "none";
+                    googleSignInButton.style.display = "block";
+                    facebookSignInButton.style.display = "block";
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        });
+    </script>
+</body>
+
+</html>
+
+
+<!-- 
+firebase.auth().onAuthStateChanged((authenticate)=>{
+    if (authenticate) {
+     this,this.props.navigation.replace('Home')
+    } else {
+     this,this.props.navigation.replace('Signin')
+    }
+   }) -->
+
+
+<!-- auth.onAuthStateChanged((user) => {
+    console.log(user);
+  });
+const auth = getAuth();
+Vidhya Skill School19:42
+const auth = getAuth();
+auth.onAuthStateChanged((user) => {
+    console.log(user);
+  }); -->
