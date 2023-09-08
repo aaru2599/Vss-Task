@@ -88,19 +88,19 @@ function performGoogleSearch() {
 
 }
 function renderData(apiData) {
-    const main=document.getElementById("fatchData")
-    main.innerHTML=""
+    const main = document.getElementById("fatchData")
+    main.innerHTML = ""
     for (let i = 0; i < apiData.length; i++) {
         const userData = apiData[i]
         var udata = document.createElement("div")
         udata.innerHTML = `
  <div>
- <dl class="d-flex justify-content-between">
+ <dl ">
     <dt>Repo Name</dt>                            
     <dd>${userData.name}</dd>
   </dl>
        
-  <dl class="d-flex justify-content-between">
+  <dl ">
     <dt>Repo details</dt>                            
     <dd></dd><dd> <a href = ${userData.html_url} > 
     repoDetails 
@@ -108,7 +108,7 @@ function renderData(apiData) {
   </dl>
  <div/>
  `;
- main.appendChild(udata)
+        main.appendChild(udata)
     }
 
 }
