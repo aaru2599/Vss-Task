@@ -11,24 +11,29 @@
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
 </head>
 
 <body>
     <h1>Login with Firebase</h1>
     <button id="googleSignInButton">Sign in with Google</button>
-    <button id="signOutButton" style="display: none;">Sign Out</button>
-    <div id="userProfile" style="display: none;">
-        <h2>User Profile</h2>
-        <p><strong>Welcome</strong> <span id="userName"></span></p>
-        <div class="prof-img">
-            <img id="userPhoto" src="" alt="Profile Picture">
+    <button  id="signOutButton" style="display: none;">Sign Out</button>
+    <header >
+        <div id="userProfile" style="display: none;">
+            <div class="d-flex  justify-content-end p-2 m-4 border border-primary">
+                <p><strong>Welcome</strong> <span id="userName"></span></p>
+                <div class="prof-img">
+                    <img width="50" height="50" id="userPhoto" src="" alt="Profile Picture">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center ">
+                <div>
+                    <input type="text" name="githubName" id="githubName" placeholder="Github UserName">
+                    <button>Submit</button></div>
+            </div>
+            <div id="fatchData" class="d-flex gap-4 mt-3 align-content-center flex-wrap"></div>
         </div>
-        <div>
-            <input type="text" name="githubName" id="githubName" placeholder="Github UserName">
-            <button>Submit</button>
-        </div>
-        <div id="fatchData"></div>
-    </div>
+    </header>
 
 </body>
 
@@ -81,15 +86,16 @@
     // Display user data and show sign-out button
     function displayUserData(user) {
         if (user) {
-            // const userName = user.displayName;
+            const userName = user.displayName.split(" ");
             // const userEmail = user.email;
             // const userProfilePicture = user.photoURL;
 
-            userNameSpan.textContent = user.displayName;
+            userNameSpan.textContent = userName[0];
             userPhoto.src = user.photoURL;
 
             userProfile.style.display = "block";
             signOutButton.style.display = "block";
+            signOutButton.style.className="d-flex  justify-content-end"
             googleSignInButton.style.display = "none";
         }
     }
@@ -101,7 +107,6 @@
                 userProfile.style.display = "none";
                 signOutButton.style.display = "none";
                 googleSignInButton.style.display = "block";
-                facebookSignInButton.style.display = "block";
             })
             .catch((error) => {
                 console.error(error);
@@ -112,7 +117,11 @@
         var githubSearchUrl = ` https://api.github.com/users/${searchQuery}/repos`;
         // window.open(googleSearchUrl, '');
         fetch(githubSearchUrl)
+
             .then(function (resposnce) {
+                if (!resposnce.ok) {
+                    alert("username not matched")
+                }
                 return resposnce.json()
             })
             .then(function (resposnce) {
@@ -130,18 +139,16 @@
             const userData = apiData[i]
             var udata = document.createElement("div")
             udata.innerHTML = `
- <div>
- <dl ">
-    <dt>Repo Name</dt>                            
-    <dd>${userData.name}</dd>
-  </dl>
+ <div  >
+ 
+    <a href=${userData.html_url} target="_blank">
+        <button class="GFG">
+            ${userData.name}
+        </button>
+    </a>                      
+ 
+ 
        
-  <dl ">
-    <dt>Repo details</dt>                            
-    <dd></dd><dd> <a href = ${userData.html_url} > 
-    repoDetails 
-</a> </dd>
-  </dl>
  <div/>
  `;
             main.appendChild(udata)
