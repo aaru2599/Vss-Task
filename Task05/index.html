@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Form</h2>
+    <form>
+        <div>
+            Name: <input type="text" name="uname" id="uName">
+        </div>
+        <div>
+            EmailId: <input type="email" name="email" id="emailId">
+        </div>
+        <div>
+            MobileNo: <input type="text" name="mobileNo" id="mobileNo">
+        </div>
+        <button onclick="getElembyId()">Submit</button>
+    </form>
+    <div id="displayData"></div>
+    <script>
+
+        function getElembyId(Id) {
+            return document.getElementById(Id)
+        }
+        const element = getElembyId("uName");
+        const displayData = document.getElementById("displayData")
+        if (element) {
+            const data=element.value;
+            displayData.innerHTML = `
+    <h3>Submitted Data</h3>
+    <p>${data}</p>
+    `;
+
+        }
+        else {
+            displayData.innerHTML = `
+  <p>Data Not found</p>
+  `;
+        }
+    </script>
+</body>
+
+</html>
