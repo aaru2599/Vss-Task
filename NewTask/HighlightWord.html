@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="inputText" type="text">
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, nostrum!</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, aspernatur perspiciatis! Dignissimos,
+        impedit! Doloribus, nihil?</div>
+    <div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi non ut necessitatibus vel deleniti quos nulla.
+    </div>
+    <script>
+        const inputElement = document.getElementById("inputText")
+        // console.log("inputElement",inputElement);
+        const tagElement = document.querySelectorAll("*:not(script):not(meta):not(html):not(head):not(body):not(title):not(style):not(input)")
+        console.log("tagElement", tagElement);
+        
+        var elemArray = Array.from(tagElement)
+
+        // console.log("elemArray",elemArray.textContent);
+        inputElement.addEventListener('input', wordElemFunction)
+
+        function wordElemFunction  () {
+            const userInput = inputElement.value.toLowerCase()
+            console.log("userInput", userInput);
+            elemArray.forEach(getElement)
+            function getElement(element){
+                var tagText=element.textContent.toLowerCase()
+                console.log("tagText",tagText);
+                const wordsArr=tagElement.split(' ')
+
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

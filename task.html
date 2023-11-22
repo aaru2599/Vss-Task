@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+    <style>
+        body{
+            background-color: aquamarine;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* background-color: aquamarine;  */
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .inner-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .newClass {
+            cursor: pointer;
+            background-color: #a0aec0;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            width: 80px;
+            transition: background-color 0.3s ease;
+        }
+
+
+       
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="inner-container" id="nums"></div>
+        </div>
+    </div>
+    <script>
+        const numsElem = document.getElementById("nums");
+        let numsList = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105];
+        let previousElement = null;
+
+        for (let i = 0; i < numsList.length; i++) {
+            const newTagDiv = document.createElement("div");
+            newTagDiv.textContent = numsList[i];
+
+            if (numsList[i] % 2 === 0) {
+                newTagDiv.style.backgroundColor = "blue";
+            } else {
+                newTagDiv.style.backgroundColor = "red";
+            }
+
+            newTagDiv.className = "newClass";
+            newTagDiv.addEventListener('click', () => {
+                if (previousElement !== null) {
+            const previousNum = parseInt(previousElement.textContent);
+            previousElement.style.backgroundColor = previousNum % 2 === 0 ? "blue" : "red";
+        }
+        newTagDiv.style.backgroundColor = "tomato";
+        previousElement = newTagDiv;
+
+                newTagDiv.classList.add("active");
+                // previousElement = newTagDiv;
+                newTagDiv.style.backgroundColor = "tomato";
+                alert(`You clicked on element ${numsList[i]}`);
+            });
+
+            numsElem.appendChild(newTagDiv);
+        }
+    </script>
+</body>
+
+</html>
