@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .red{
+            background-color: rgb(230, 94, 94);
+        }
+        .blue{
+            background-color: rgb(69, 69, 159);
+        }
+    </style>
 </head>
 
 <body>
@@ -19,21 +27,42 @@
         // console.log("inputElement",inputElement);
         const tagElement = document.querySelectorAll("*:not(script):not(meta):not(html):not(head):not(body):not(title):not(style):not(input)")
         console.log("tagElement", tagElement);
-        
+
         var elemArray = Array.from(tagElement)
 
         // console.log("elemArray",elemArray.textContent);
         inputElement.addEventListener('input', wordElemFunction)
 
-        function wordElemFunction  () {
+        function wordElemFunction() {
             const userInput = inputElement.value.toLowerCase()
-            console.log("userInput", userInput);
+            // console.log("userInput", userInput);
             elemArray.forEach(getElement)
-            function getElement(element){
-                var tagText=element.textContent.toLowerCase()
-                console.log("tagText",tagText);
-                const wordsArr=tagElement.split(' ')
 
+            function getElement(element) {
+                var tagText = element.textContent.toLowerCase()
+                // console.log("tagText", tagText);
+                const wordsArr = tagText.split(' ')
+
+                // console.log("wordsArr",wordsArr)
+
+                var targetedText = wordsArr.map((word) => {
+                    const newWord=word.includes(userInput)
+                    console.log("newWord",newWord);
+                    console.log("word", word);
+                    console.log("userInput", userInput);
+                    if (word === userInput) {
+                        return `<span class="red">${word}</span>`
+                    }
+                    else if(userInput.length!==0){
+                        if(word.includes(userInput)){
+                        return `<span class="blue">${word}</span>`
+                    }
+                    }
+                   
+                    return word
+                }).join(" ")
+
+                element.innerHTML = targetedText
             }
 
         }
