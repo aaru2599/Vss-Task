@@ -4,6 +4,13 @@
 //     return acc+cur
 // },0)
 // console.log(sunArr);
+/**
+ * 
+ * @param {*} cbFunc 
+ * @param {*} initialVal 
+ * @returns 
+ * Create a polyfill for Reduce function
+ */
 
 Array.prototype.myReduce = function(cbFunc, initialVal)  {
     var acc = initialVal;
