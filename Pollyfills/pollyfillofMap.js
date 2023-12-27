@@ -1,15 +1,31 @@
-const arr=[1,2,5,4,6]
 
-const myNewMap=(arr,callBackFn)=>{
+/**
+ * Create a pollyfill for map function
+ * 
+ * Step1:
+ */
+// const myMapFunc=(arr,cbFun)=>{
+//     let newArr=[]
+//     for(let i=0;i<arr.length;i++){
+//         newArr.push(cbFun(arr[i]))
+//     }
+//     return newArr
+// }
+// const result=(a)=>{
+// return a
+// }
 
-    let mappedArray=[]
+// console.log(myMapFunc([1,2,5,7],result));
 
-        for(let i=0;i<arr.length;i++){
-            mappedArray.push(callBackFn(arr[i]))
+Array.prototype.myMap=function(cbFun){
+    let newArr=[]
+    for(let i=0;i<this.length;i++){
+        newArr.push(cbFun(this[i]))
     }
-    return mappedArray
+    return newArr
 }
-const result=(a)=>{
-    return a
+
+const multiplyArr=(arr)=>{
+   return arr.map(item=>item*item)
 }
-console.log(myNewMap(arr,result));
+console.log(multiplyArr([1,2,5,8,6]));
