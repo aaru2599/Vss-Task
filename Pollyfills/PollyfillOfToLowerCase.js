@@ -9,16 +9,16 @@
  * step3:join that array and return  
  */
 String.prototype.myToLowerCase = function () {
-    const result = []
+    let result = ""
     for (let i = 0; i < this.length; i++) {
         const charCode = this.charCodeAt(i)
         if (charCode >= 65 && charCode <= 90) {
-            result.push(String.fromCharCode(charCode + 32))
+            result = result.concat(String.fromCharCode(charCode + 32))
         }
         else {
-            result.push(this[i])
+            result = result.concat(this[i])
         }
     }
-    return result.join("")
+    return result
 }
 console.log("Hello my Name is ARVINd".myToLowerCase());
