@@ -18,14 +18,19 @@
 // console.log(myMapFunc([1,2,5,7],result));
 
 Array.prototype.myMap=function(cbFun){
-    let newArr=[]
+    console.log("this",this);
+    console.log("cbFun",cbFun);
+    const result=[]
     for(let i=0;i<this.length;i++){
-        newArr.push(cbFun(this[i]))
+        result.push(cbFun(this[i]))
     }
-    return newArr
+    return result
 }
 
-const multiplyArr=(arr)=>{
-   return arr.map(item=>item*item)
-}
-console.log(multiplyArr([1,2,5,8,6]));
+// const multiplyArr=(arr)=>{
+//    return arr.myMap(item=>item*item)
+// }
+// console.log(multiplyArr([1,2,5,8,6]));
+
+const newResult=[1,5,6,3].myMap((item)=>item*2)
+console.log(newResult);

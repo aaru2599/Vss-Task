@@ -6,14 +6,15 @@
 // console.log(filterFunc([1,5,6,8,9,2,3]));
 
 Array.prototype.myFilter=function(cbFun){
-    let newArr=[]
+
+    const result=[]
     for(let i=0;i<this.length;i++){
-        if (cbFun(this[i],i,this)) newArr.push((this[i]))
+        if(cbFun(this[i],this,i)){
+            result.push(this[i])
+        }
     }
-return newArr
-};
-const myArr=[1,5,6,8,9,2,3]
-const filterArr=myArr.myFilter((num)=>{
-    return num>4
-})
-console.log(filterArr);
+    return result
+}
+const arr=[1,2,5,4,6]
+const finalResult=arr.myFilter((item)=>item>4)
+console.log(finalResult);
