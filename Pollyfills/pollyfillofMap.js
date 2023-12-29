@@ -27,10 +27,6 @@ Array.prototype.myMap=function(cbFun){
     return result
 }
 
-// const multiplyArr=(arr)=>{
-//    return arr.myMap(item=>item*item)
-// }
-// console.log(multiplyArr([1,2,5,8,6]));
 
 const newResult=[1,5,6,3].myMap((item)=>item*2)
 console.log(newResult);
