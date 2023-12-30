@@ -9,7 +9,8 @@ function function1(myName) {
 function function2(city) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(`Proomise 2 i live in ${city} city`)
+            // reject("Error")
+            reject(`Proomise 2 i live in ${city} city`)
         }, 2000);
     })
 }

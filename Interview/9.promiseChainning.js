@@ -12,4 +12,5 @@ function function1(data) {
 let promise=function1(true)
 promise.then(result=>{
     console.log(result);
+    return
 })
