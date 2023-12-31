@@ -22,3 +22,6 @@ function function3(occupation) {
 }
 Promise.any([function1("Arvind"), function2("CWA"), function3("Soft Dev")])
     .then(result => console.log(result)).catch(err => console.log(err))
+
+    const name="Hello, I'm Arvind Mandre—a frontend developer passionate about crafting engaging user experiences. Proficient in ReactJS, JS,HTML,Bootstrap, , I seamlessly blend creativity with code. Additionally, my Java expertise adds depth to my skill set.".length
+    console.log(name);
