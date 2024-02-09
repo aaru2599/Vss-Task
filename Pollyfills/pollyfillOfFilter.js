@@ -9,7 +9,7 @@ Array.prototype.myFilter=function(cbFun){
 
     const result=[]
     for(let i=0;i<this.length;i++){
-        if(cbFun(this[i],this,i)){
+        if(cbFun(this[i])){
             result.push(this[i])
         }
     }

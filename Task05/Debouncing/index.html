@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+
+<body>
+    <button class="btn">Click</button>
+    <div>Button Click <span class="btn_Clicked"></span> times </div>
+    <div>Event triggered <span class="event_trigger"></span> times </div>
+
+</body>
+
+</html>
+<script>
+    const btnData = document.querySelector(".btn");
+    const btn_Click = document.querySelector(".btn_Clicked");
+    const eventTrigger = document.querySelector(".event_trigger")
+    var clickedCount = 0;
+    var triggeredCount = 0;
+    const debounceData = _.debounce(() => {
+        eventTrigger.innerHTML = ++triggeredCount
+    }, 1000)
+    btnData.addEventListener('click', () => {
+        btn_Click.innerHTML = ++clickedCount;
+        debounceData();
+
+    })
+
+
+</script>
