@@ -30,7 +30,7 @@
         const element = getElembyId("uName");
         const displayData = document.getElementById("displayData")
         if (element) {
-            const data=element.value;
+            const data = element.value;
             displayData.innerHTML = `
     <h3>Submitted Data</h3>
     <p>${data}</p>
@@ -42,6 +42,31 @@
   <p>Data Not found</p>
   `;
         }
+    </script>
+
+    <script>
+        function curringfun(a) {
+            let add = 0;
+
+            // If an argument is present, add it to the running total
+            if (a) {
+                add += a;
+            }
+
+            // Recursive call with the remaining arguments
+            function innerCurringfun(nextArg) {
+                if (arguments.length === 0) {
+                    return add; // Return the final sum when no more arguments are present
+                }
+                add += nextArg;
+                return innerCurringfun; // Return the function itself for chaining
+            }
+
+            return innerCurringfun; // Return the inner function for currying
+        }
+
+        console.log(curringfun(2)(3)(4)()); // Output: 9 (2 + 3 + 4)
+
     </script>
 </body>
 

@@ -42,23 +42,23 @@
 
 
 
-function function1() {
+function function1(name) {
     return new Promise((resolve, reject) => {
         resolve("Resolve 1");
     })
 }
 
-function function2() {
+function function2(city) {
     return new Promise((resolve, reject) => {
         resolve("Resolve 2");
     })
 }
-function function3() {
+function function3(designation) {
     return new Promise((resolve, reject) => {
         resolve("Resolve 3");
     })
 }
-function1().then((result) => {
+function1("Arvind").then((result) => {
     console.log(result);
     return function2();
 
